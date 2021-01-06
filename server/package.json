@@ -7,11 +7,13 @@
   "dependencies": {
     "cors": "^2.8.5",
     "cron": "^1.8.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-brute": "^1.0.1",
     "helmet": "^4.3.1",
     "lowdb": "^1.0.0",
     "mongoose": "^5.11.10",
-    "res-time": "^1.0.1"
+    "res-time": "^1.0.1",
+    "valid-url": "^1.0.9"
   }
 }

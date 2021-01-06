@@ -7,6 +7,7 @@ exports.getTime = async url => {
             return time
         })
         .catch(err => {
+            console.error(err.message)
             return 69420 // Thanks Elon!
         })
 
