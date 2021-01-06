@@ -1,0 +1,2 @@
+# IsItDown
+An outtage detector
