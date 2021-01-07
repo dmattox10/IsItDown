@@ -25,3 +25,5 @@ statsRouter.get('/', Cors(), async (req, res) => {
         total: allUrls
     })
 })
+
+module.exports = statsRouter

@@ -1,7 +1,6 @@
 const express = require('express')
 const Cors = require('cors')
 const ExpressBrute = require('express-brute')
-const validUrl = require('valid-url')
 
 const checker = require('../tools/checker')
 const saver = require('../tools/saver')
@@ -12,11 +11,11 @@ const bruteforce = new ExpressBrute(store)
 
 subRouter.post('/', Cors(), bruteforce.prevent, async (req, res) => {
 
-    const url = req.body.url
+    const url = req.body.longUrl
     let info = {}
-    if (validUrl.isUri(url)) {
-        let time = await checker.getTime(url)
+    checker.getTime(url).then(time => {
         info.url = url
+        console.log(time)
         if (time === 69420) {
             info.up = false
         }
@@ -24,12 +23,13 @@ subRouter.post('/', Cors(), bruteforce.prevent, async (req, res) => {
             info.up = true
             info.time = time
         }
-        let response = await saver.save(info)
-        res.status(201).json(response)
-    }
-    else {
-        let response = { message: 'Please enter a valid URL' }
-        res.status(404).json(response)
-    }
+        saver.save(info).then(response => {
+            res.status(201).json(response)
+        })
+        
+    })
+    
 
 })
+
+module.exports = subRouter
