@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
-// import './index.css'
+import 'bootswatch/dist/superhero/bootstrap.min.css'
+import './CSS/custom.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
