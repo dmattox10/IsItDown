@@ -22,7 +22,7 @@ export const useDown = () => {
 
     const addUrl = url => {
         axios.post(`${baseUrl}/v1/submit`, url).then(res => {
-            // put the data into the app, dependent on error message if any
+            
         }).catch(err => {
             if (err.response) { // (5xx, 4xx)
                 updateMessage({
