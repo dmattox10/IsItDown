@@ -22,6 +22,6 @@ statsRouter.get('/', Cors(), async (req, res) => {
 
     res.status(200).json({
         visits: visitors,
-        contents: allUrls
+        total: allUrls
     })
 })
