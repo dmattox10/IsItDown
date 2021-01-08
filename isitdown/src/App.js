@@ -9,10 +9,10 @@ import Stats from './components/Stats'
 import Success from './components/Success'
 
 const App = props => {
-  const [stats, addUrl, message, resetAll] = useDown()
+  const [stats, addUrl, message, resetAll, info] = useDown()
   return (
     <div className="App">
-      <downContext.Provider value={{stats, addUrl, message, resetAll}}>
+      <downContext.Provider value={{stats, addUrl, message, resetAll, info}}>
         <Message />
         <Row>
           <Container>
@@ -22,7 +22,7 @@ const App = props => {
         <Container>
           <Row>
             <Col xs='3'>
-              <Stats stats={stats}/>
+              <Stats stats={ stats }/>
             </Col>
             <Col xs='9'>
               <Route exact path='/' component={ Hero } />

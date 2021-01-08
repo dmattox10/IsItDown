@@ -12,6 +12,13 @@ export const useDown = () => {
         total: 0,
         visits: 0
     })
+    const [info, updateInfo] = useState({
+        timesChecked: 0,
+        time: 0,
+        timesDown: 0,
+        up: false,
+        url: 'ohno.com'
+    })
     const [message, updateMessage] = useState({
         text: null
     })
@@ -22,7 +29,14 @@ export const useDown = () => {
 
     const addUrl = url => {
         axios.post(`${baseUrl}/v1/submit`, url).then(res => {
-            
+            updateInfo({
+                timesChecked: res.data.timesChecked,
+                time: res.data.times[res.data.times.length - 1] || 69.420,
+                timesDown: res.data.timesDown,
+                up: res.data.up,
+                url: res.data.url
+            })
+            history.push('/success')
         }).catch(err => {
             if (err.response) { // (5xx, 4xx)
                 updateMessage({
@@ -45,7 +59,13 @@ export const useDown = () => {
         updateMessage({
             text: null
         })
-        getStats()
+        updateInfo({
+            timesChecked: 0,
+            times: [],
+            timesDown: 0,
+            up: false,
+            url: 'ohno.com'
+        })
         history.push('/')
     }
 
@@ -74,5 +94,5 @@ export const useDown = () => {
         })
     }
 
-    return [stats, addUrl, message, resetAll]
+    return [stats, addUrl, message, resetAll, info]
 }

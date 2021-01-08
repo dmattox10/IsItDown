@@ -2,31 +2,26 @@ const Url = require('../models/url')
 
 exports.save = async info => {
 
-    const filter = { url: info.url }
+    const filter = { url: {'$regex' : info.url, '$options' : 'i'} } // Hopefully this regex works, my second one ever
+    let update = {}
     if (info.up) {
-        let update = { 
+        update = { 
             up: info.up,
             $inc: { timesChecked : 1 },
             $push: { times: info.time }
         }
-        let query = await Url.findOneAndUpdate(filter, update, {
-            new: true,
-            upsert: true
-        })
-    
-        return query
     }
     else {
-        let update = {
+        update = {
             up: info.up,
-            $inc: { 'timesDown' : 1 }
+            $inc: { timesDown : 1 }
         }
-        let query = await Url.findOneAndUpdate(filter, update, {
-            new: true,
-            upsert: true
-        })
-    
-        return query
     }
+    Url.findOneAndUpdate(filter, update, {
+        new: true,
+        upsert: true
+    }).then(result => {
+        console.log(result)
+    })
     
 }

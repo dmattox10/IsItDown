@@ -1,7 +1,8 @@
 const express = require('express')
 const Cors = require('cors')
 const ExpressBrute = require('express-brute')
-
+const validUrl = require('valid-url')
+const Url = require('../models/url')
 const checker = require('../tools/checker')
 const saver = require('../tools/saver')
 
@@ -13,7 +14,7 @@ subRouter.post('/', Cors(), bruteforce.prevent, async (req, res) => {
 
     const url = req.body.longUrl
     let info = {}
-    checker.getTime(url).then(time => {
+    await checker.getTime(url).then(time => {
         info.url = url
         console.log(time)
         if (time === 69420) {
@@ -23,13 +24,15 @@ subRouter.post('/', Cors(), bruteforce.prevent, async (req, res) => {
             info.up = true
             info.time = time
         }
-        saver.save(info).then(response => {
-            res.status(201).json(response)
+        saver.save(info)
+        const filter = { url: {'$regex' : info.url, '$options' : 'i'} } // Hopefully this regex works, my second one ever
+        Url.findOne(filter).then(result => {
+            return res.status(201).json(result)
         })
-        
+
     })
     
-
+    
 })
 
 module.exports = subRouter

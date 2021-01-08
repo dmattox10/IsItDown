@@ -54,3 +54,10 @@
 .centered {
     text-align: center;
 }
+.up {
+    color: lime;
+}
+
+.down {
+    color: tomato;
+}
