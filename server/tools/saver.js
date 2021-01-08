@@ -2,10 +2,11 @@ const Url = require('../models/url')
 
 exports.save = async info => {
 
-    const filter = { url: {'$regex' : info.url, '$options' : 'i'} } // Hopefully this regex works, my second one ever
+    let filter = { url: {'$regex' : info.url, '$options' : 'i'} } // Hopefully this regex works, my second one ever
     let update = {}
     if (info.up) {
-        update = { 
+        update = {
+            url: info.url, 
             up: info.up,
             $inc: { timesChecked : 1 },
             $push: { times: info.time }
@@ -13,6 +14,7 @@ exports.save = async info => {
     }
     else {
         update = {
+            url: info.url,
             up: info.up,
             $inc: { timesDown : 1 }
         }

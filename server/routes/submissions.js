@@ -25,7 +25,7 @@ subRouter.post('/', Cors(), bruteforce.prevent, async (req, res) => {
             info.time = time
         }
         saver.save(info)
-        const filter = { url: {'$regex' : info.url, '$options' : 'i'} } // Hopefully this regex works, my second one ever
+        let filter = { url: {'$regex' : url, '$options' : 'i'} } // Hopefully this regex works, my second one ever
         Url.findOne(filter).then(result => {
             return res.status(201).json(result)
         })
