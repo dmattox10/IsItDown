@@ -10,13 +10,15 @@ const db = low(adapter)
 
 const statsRouter = express.Router()
 
-statsRouter.get('/', Cors(), async (req, res) => {
+statsRouter.get('/', Cors(), (req, res) => {
     db.update('visits', n => n + 1)
     .write()
-
-    let urlsList = await Url.find({})
-    db.update('contents', urlsList.length).write()
-
+    const urlsList = Url.estimatedDocumentCount()
+    urlsList.then(count => {
+        console.log(count)
+        db.set('contents', count).write()
+    })
+    
     const visitors = db.get('visits').value()
     const allUrls = db.get('contents').value()
 
