@@ -14,6 +14,7 @@
     "express": "^4.17.1",
     "express-brute": "^1.0.1",
     "helmet": "^4.3.1",
+    "is-reachable": "^5.0.0",
     "lowdb": "^1.0.0",
     "mongoose": "^5.11.10",
     "res-time": "^1.0.1",
