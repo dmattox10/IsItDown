@@ -14,7 +14,7 @@ statsRouter.get('/', Cors(), async (req, res) => {
     db.update('visits', n => n + 1)
     .write()
 
-    const urlsList = await Url.find({})
+    let urlsList = await Url.find({})
     db.update('contents', urlsList.length).write()
 
     const visitors = db.get('visits').value()

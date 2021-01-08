@@ -15,7 +15,7 @@ const Success = props => {
             <Card body>
                     <CardTitle><h3>Here's what I found:</h3></CardTitle>
                     <div className='centered'>
-                        <h3>{url} : {up ? <Up time={time} /> : <Down timesDown={timesDown} />}</h3>
+                        <div>{url} : {up ? <Up time={time} /> : <Down timesDown={timesDown} />}</div>
                         <h4>{message.text}</h4>
                         <Button onClick={resetAll}>Reset!</Button>
                     </div>

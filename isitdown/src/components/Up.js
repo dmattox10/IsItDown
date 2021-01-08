@@ -2,7 +2,7 @@ const Up = props => {
 
     return (
         <div>
-            Currently&nbsp;<div className='up'>UP</div>&nbsp;and responded in {props.time}ms.
+            Currently&nbsp;<h5 className='up'>UP</h5>&nbsp;and responded in {props.time}ms.
         </div>
     )
 }

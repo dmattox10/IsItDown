@@ -36,6 +36,9 @@ export const useDown = () => {
                 up: res.data.up,
                 url: res.data.url
             })
+            updateMessage({
+                text: null
+            })
             history.push('/success')
         }).catch(err => {
             if (err.response) { // (5xx, 4xx)
