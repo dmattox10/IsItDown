@@ -10,11 +10,11 @@ const subRouter = express.Router()
 const store  = new ExpressBrute.MemoryStore()
 const bruteforce = new ExpressBrute(store)
 
-subRouter.post('/', Cors(), bruteforce.prevent, async (req, res) => {
+subRouter.post('/', Cors(), bruteforce.prevent, (req, res) => {
 
     const url = req.body.longUrl
     let info = {}
-    await checker.getTime(url).then(time => {
+    checker.getTime(url).then(time => {
         info.url = url
         console.log(time)
         if (time === 69420) {
@@ -25,7 +25,7 @@ subRouter.post('/', Cors(), bruteforce.prevent, async (req, res) => {
             info.time = time
         }
         saver.save(info)
-        let filter = { url: {'$regex' : url, '$options' : 'i'} } // Hopefully this regex works, my second one ever
+        let filter = { url: {'$regex' : url, '$options' : 'i'} }
         Url.findOne(filter).then(result => {
             return res.status(201).json(result)
         })

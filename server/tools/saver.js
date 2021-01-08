@@ -2,7 +2,7 @@ const Url = require('../models/url')
 
 exports.save = async info => {
 
-    let filter = { url: {'$regex' : info.url, '$options' : 'i'} } // Hopefully this regex works, my second one ever
+    let filter = { url: {'$regex' : info.url, '$options' : 'i'} }
     let update = {}
     if (info.up) {
         update = {
