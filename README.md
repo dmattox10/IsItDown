@@ -3,7 +3,7 @@ A simple status checker for sites, servers, services, with uptime and overall st
 
 ## About this project
 A simple iteration of isitdownrightnow.com, with the stats interface I've been adding to all of my projects.
-The instructions to get it running on on the README's in both the client (named after the project) and server folders.
+The instructions to get it running are on the README's in both the client (named after the project) and server folders.
 
 ### Tech Stack
 React web client, running in Docker, connects to Express server, running in Docker, uses MongoDB for persistence, running in Docker (kind of a theme for me).
